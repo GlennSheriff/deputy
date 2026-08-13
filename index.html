@@ -99,14 +99,12 @@
   main{ padding:16px 16px 0; max-width:640px; margin:0 auto; }
 
   #form-panel{
-    display:none;
     background:var(--panel);
     border:1px solid var(--line);
     border-radius:6px;
     padding:16px;
     margin-bottom:20px;
   }
-  #form-panel.open{ display:block; }
   .section-label{
     font-size:0.65rem; color:var(--text-faint); text-transform:uppercase;
     letter-spacing:0.06em; margin:14px 0 8px; border-top:1px solid var(--line); padding-top:12px;
@@ -240,6 +238,10 @@
    text into the background. Fallback literals sit before each var() so the
    page stays readable even if a custom property fails to resolve. */
 :root{color-scheme:dark}
+/* The hidden attribute must beat any class that sets display, otherwise
+   overlays like .lightbox and .modal-overlay (display:flex) stay on screen
+   permanently and cover the page. */
+[hidden]{display:none!important}
 html{background:#14161a}
 *{box-sizing:border-box}
 body{margin:0;
