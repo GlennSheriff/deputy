@@ -6,11 +6,15 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="theme-color" content="#14161a">
+<meta name="color-scheme" content="dark">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" media="print" onload="this.media='all'"
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap">
 <title>Blade Log</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=Oswald:wght@500;600;700&display=swap');
 
-  :root{
+:root{
     --bg: #14161a;
     --panel: #1c1f24;
     --panel-raised: #23262c;
@@ -231,12 +235,21 @@
   ::placeholder{ color:#5a5e64; }
 
 /* ---- merged-app additions ---------------------------------------- */
+/* Declare the scheme explicitly. Without this, browser auto-dark-mode and
+   dark-mode extensions try to "convert" an already-dark page and can invert
+   text into the background. Fallback literals sit before each var() so the
+   page stays readable even if a custom property fails to resolve. */
+:root{color-scheme:dark}
+html{background:#14161a}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--text);
+body{margin:0;
+  background:#14161a;background:var(--bg,#14161a);
+  color:#e8e6e0;color:var(--text,#e8e6e0);
   font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-  -webkit-text-size-adjust:100%}
-header{position:sticky;top:0;z-index:30;background:var(--panel);
-  border-bottom:1px solid var(--line);padding:10px 14px 8px;
+  -webkit-text-size-adjust:100%;forced-color-adjust:none}
+header{position:sticky;top:0;z-index:30;
+  background:#1c1f24;background:var(--panel,#1c1f24);
+  border-bottom:1px solid var(--line,#33383f);padding:10px 14px 8px;
   padding-top:calc(10px + env(safe-area-inset-top))}
 .hdr-top{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap}
 h1{font-size:1.15rem;margin:0;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
